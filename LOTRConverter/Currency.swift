@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Currency: Double {
+enum Currency: Double, CaseIterable, Identifiable {
     case copperPenny = 6400
     case silverPenny = 64
     case silverPiece = 16
@@ -43,4 +43,6 @@ enum Currency: Double {
             "Gold Piece"
         }
     }
+    
+    var id: Currency { self }
 }
