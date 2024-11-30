@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct IconGrid: View {
-    @State var currency: Currency
+    @Binding var currency: Currency
     
     var body: some View {
         LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
             ForEach(Currency.allCases) { coin in
-                if self.currency == coin {
+                if currency == coin {
                     CurrencyIcon(currencyImage: coin.image, currentName: coin.name)
                         .shadow(color: .black, radius: 10)
                         .overlay {
@@ -24,7 +24,7 @@ struct IconGrid: View {
                 } else {
                     CurrencyIcon(currencyImage: coin.image, currentName: coin.name)
                         .onTapGesture {
-                            self.currency = coin
+                            currency = coin
                         }
                 }
             }
@@ -33,5 +33,6 @@ struct IconGrid: View {
 }
 
 #Preview {
-    IconGrid(currency: .goldPiece)
+    @Previewable @State var currency = Currency.goldPiece
+    IconGrid(currency: $currency)
 }
