@@ -18,7 +18,7 @@ struct SelectCurrency: View {
             Image(.parchment)
                 .resizable()
                 .ignoresSafeArea()
-                .background(.brown)
+                .background(.red)
             
             VStack {
                 // Text

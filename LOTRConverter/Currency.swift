@@ -45,4 +45,22 @@ enum Currency: Double, CaseIterable, Identifiable {
     }
     
     var id: Currency { self }
+    
+//    func convert(from value: Double) -> Double {
+//        value / Double(self.rawValue)
+//    }
+//    
+//    func convert(to value: Double) -> Double {
+//        value * Double(self.rawValue)
+//    }
+//    
+    func convert(amountString: String, currency: Currency) -> String {
+        guard let amount = Double(amountString) else {
+            return "NaN"
+        }
+        
+        let convertedAmount = (amount / self.rawValue) * currency.rawValue
+        
+        return String(format: "%.2f", convertedAmount)
+    }
 }
