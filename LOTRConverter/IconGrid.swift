@@ -13,17 +13,16 @@ struct IconGrid: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
             ForEach(Currency.allCases) { coin in
+                let icon = CurrencyIcon(currencyImage: coin.image, currentName: coin.name)
                 if currency == coin {
-                    CurrencyIcon(currencyImage: coin.image, currentName: coin.name)
-                        .shadow(color: .black, radius: 10)
+                        icon.shadow(color: .black, radius: 10)
                         .overlay {
                             RoundedRectangle(cornerRadius: 25)
                                 .stroke(lineWidth: 3)
                                 .opacity(0.5)
                         }
                 } else {
-                    CurrencyIcon(currencyImage: coin.image, currentName: coin.name)
-                        .onTapGesture {
+                    icon.onTapGesture {
                             currency = coin
                         }
                 }
