@@ -8,14 +8,17 @@
 import SwiftUI
 
 enum Currency: Double, CaseIterable, Identifiable {
+    case cacobean    = 10000
     case copperPenny = 6400
     case silverPenny = 64
     case silverPiece = 16
-    case goldPenny = 4
-    case goldPiece = 1
+    case goldPenny   = 4
+    case goldPiece   = 1
     
     var image: ImageResource {
         switch self {
+            case .cacobean:
+                .cacaobean
             case .copperPenny:
                 .copperpenny
             case .silverPenny:
@@ -31,6 +34,8 @@ enum Currency: Double, CaseIterable, Identifiable {
     
     var name: String {
         switch self {
+        case .cacobean:
+            "Caco Bean"
         case .copperPenny:
             "Copper Penny"
         case .silverPenny:
@@ -62,5 +67,30 @@ enum Currency: Double, CaseIterable, Identifiable {
         let convertedAmount = (amount / self.rawValue) * currency.rawValue
         
         return String(format: "%.2f", convertedAmount)
+    }
+    
+    
+
+}
+
+
+class UserDefaultsManager {
+    
+    @MainActor
+    static private let defaults = UserDefaults.standard
+        
+    @MainActor
+    static func save(_ currency: Currency, saveName: String) {
+        defaults.set(currency.rawValue, forKey: saveName)
+        defaults.synchronize()
+    }
+    
+    @MainActor
+    static func restore(_ saveName: String) -> Currency? {
+        guard let rawValue = defaults.value(forKey: saveName) as? Double else {
+            return nil
+        }
+        
+        return Currency(rawValue: rawValue)
     }
 }
