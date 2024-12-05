@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Currency: Double, CaseIterable, Identifiable {
-    case cacobean    = 10000
+    case cacobean    = 128
     case copperPenny = 6400
     case silverPenny = 64
     case silverPiece = 16
