@@ -50,9 +50,9 @@ struct ConversionSection: View {
         .onChange(of: amount) {
             if typing {
                 destinationAmount = currency.convert(amount, to: destinationCurrency)
-                // print startement for tdebugging purpose.
+                // print startement for debugging purpose.
                 // checking that the calculation is working
-                print("Destination Amount: \(destinationAmount) ")
+                print("Currency: \(currency), Amount: \(amount), Destination Amount: \(destinationAmount) ")
             }
         }
     }

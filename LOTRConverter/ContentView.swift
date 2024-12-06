@@ -27,6 +27,11 @@ struct ContentView: View {
     let currencyTip = CurrencyTip()
     
     var body: some View {
+        
+#if DEBUG
+        let _ = ContentView._printChanges()
+#endif
+        
         ZStack {
             // Background Image
             Image(.background)
